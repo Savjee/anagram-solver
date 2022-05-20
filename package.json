@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build:dict && npm run build:web",
-    "build:dict": "node -r esbuild-runner/register scripts/generate_dictionaries.ts", 
-    "build:web": "esbuild src-www/js/main.ts --bundle --outfile=src-www/dist.js",
+    "build:dict": "node -r esbuild-runner/register scripts/generate_dictionaries.ts",
+    "build:web": "esbuild src-www/js/main.ts --bundle --outfile=src-www/js/dist.js --minify --sourcemap --target=chrome58,firefox57,safari11,edge16",
+    "start": "esbuild src-www/js/main.ts --bundle --outfile=src-www/js/dist.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

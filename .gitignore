@@ -1,4 +1,6 @@
 .DS_Store
 node_modules
 src-www/api/*
+src-www/js/dist.js
+src-www/js/dist.js.map
 scripts/dictionaries/*.txt
