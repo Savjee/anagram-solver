@@ -12,33 +12,39 @@ const solveButton = (<HTMLButtonElement> $('solveButton'));
 const languageSelect = (<HTMLSelectElement> $('language'));
 const resultsDiv = (<HTMLDivElement> $('results'));
 
+const noResultsHtml = `
+    <ul>
+        <li>No results</li>
+    </ul>
+`;
+
 async function solve(){
     const alpha = alphabetize(anagramInpt.value);
     const prefix = getHashPrefix(alpha);
     const lang = languageSelect.value;
 
-    const res = await fetch(`api/v1/${lang}/${prefix}.json`);
-    const data = await res.json();
+    const res = await fetch(`api/v1/${lang}/${prefix}.json`)
+                        .catch(e => {
+                            resultsDiv.innerHTML = noResultsHtml;
+                        });
+    const data = await res.json()
+                        .catch(e => {
+                            resultsDiv.innerHTML = noResultsHtml;
+                        });
 
     const solutions = data.data.find(el => el.alpha === alpha);
-    if (solutions && solutions.words.length > 0) {
-        console.log(solutions.words);
-        console.log(typeof solutions.words);
-
-        resultsDiv.innerHTML = html`
-            <ul>
-                ${solutions.words.map((solution) => { return `
-                    <li>${solution}</li>
-                `})}
-            </ul>
-        `;
-    } else {
-        resultsDiv.innerHTML = `
-            <ul>
-                <li>No results</li>
-            </ul>
-        `;
+    if(!solutions || !solutions.words || solutions.length === 0){
+        resultsDiv.innerHTML = noResultsHtml;
+        return;
     }
+
+    resultsDiv.innerHTML = html`
+        <ul>
+            ${solutions.words.map((solution) => { return `
+                <li>${solution}</li>
+            `})}
+        </ul>
+    `;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
