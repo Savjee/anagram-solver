@@ -1,1 +1,4 @@
+.DS_Store
 node_modules
+src-www/api/*
+scripts/dictionaries/*.txt
