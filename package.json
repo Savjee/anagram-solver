@@ -18,7 +18,8 @@
     "crypto-js": "^4.1.1",
     "esbuild": "^0.14.8",
     "html-template-tag": "^4.0.0",
-    "remove-accents": "^0.4.2"
+    "remove-accents": "^0.4.2",
+    "wrangler": "^2.0.25"
   },
   "dependencies": {
     "esbuild-runner": "^2.2.1"
