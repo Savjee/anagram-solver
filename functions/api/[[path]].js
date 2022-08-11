@@ -21,6 +21,6 @@ export async function onRequestGet({ request, env }) {
       headers: responseHeaders
     });
   }catch(e){
-    return new Response("Error occured: " + JSON.stringify(e), {status: 500});
+    return new Response("Error occured: " + e, {status: 500});
   } 
 }
