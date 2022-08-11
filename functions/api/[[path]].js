@@ -1,8 +1,9 @@
 export async function onRequestGet({ request, env }) {
   const requestUrl = new URL(request.url);
+  const objKey = requestUrl.pathname.slice(1);
 
   // Try to fetch the object from R2
-  const obj = await env.R2_API_STORAGE.get(requestUrl.pathname);
+  const obj = await env.R2_API_STORAGE.get(objKey);
 
   if (obj === null) {
     return new Response('Not found', { status: 404 });
