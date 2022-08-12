@@ -5,7 +5,7 @@ import { languages } from '../../src-common/languages';
 var html = require("html-template-tag");
 
 // jQuery anyone? Oldschool JS rocks!
-const $ = function( id ) { return document.getElementById( id ); };
+function $(id: string) { return document.getElementById( id ); };
 
 const anagramInpt = (<HTMLInputElement> $('anagram'));
 const solveButton = (<HTMLButtonElement> $('solveButton'));
