@@ -9,7 +9,7 @@ import { alphabetize } from '../src-common/alphabetize';
 import { getHashPrefix } from '../src-common/getHashPrefix';
 import { languages } from '../src-common/languages';
 
-const OUTPUT_DIR = path.join(__dirname, '../src-www/api/v1/');
+const OUTPUT_DIR = path.join(__dirname, '../_dist/api/v1/');
 
 // ---- MAIN
 async function generateAPIData(language){
@@ -23,6 +23,7 @@ async function generateAPIData(language){
         crlfDelay: Infinity,
     });
 
+    let wordCount = 0;
     for await (const word of rl) {
         const alpha = alphabetize(word);
         const prefix = getHashPrefix(alpha);
@@ -41,6 +42,8 @@ async function generateAPIData(language){
 
        map[prefix].find(el => el.alpha === alpha)
                     .words.push(word);
+
+        wordCount++;
     }
 
     for(const prefix in map){
@@ -53,6 +56,8 @@ async function generateAPIData(language){
             })
         );
     }
+
+    console.log("Word count:", wordCount);
 }
 
 (async () => {
