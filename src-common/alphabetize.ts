@@ -1,11 +1,11 @@
 import { remove } from "remove-accents";
 
 export function alphabetize(word: string): string{
-    const alpha = word
-            .toLowerCase()
+    // Strip the accents & convert to lower case
+    const input = remove(word.toLowerCase());
+    
+    return input
             .split('')
             .sort()
             .join('');
-
-    return remove(alpha);
 }
