@@ -4,3 +4,4 @@ src-www/api/*
 src-www/js/dist.js
 src-www/js/dist.js.map
 scripts/dictionaries/*.txt
+_dist
